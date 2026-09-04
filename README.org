@@ -1,0 +1,32 @@
+# [[https://melpa.org/#/mdired][file:https://melpa.org/packages/mdired-badge.svg]] [[https://stable.melpa.org/#/mdired][file:https://stable.melpa.org/packages/mdired-badge.svg]]
+
+* mdired
+
+THIS PROJECT IS WIP.
+
+*mdired* is TBD.
+
+* Requirements
+
+*mdired* requires TBD.
+
+* Install
+
+*mdired* TBD.
+
+#+begin_src elisp :lexical no
+  (require 'mdired)
+  (mdired-init)
+#+end_src
+
+  
+* Sponsorship
+
+If you enjoy using *mdired*, please consider buying me a coffee to help support its development and maintenance.
+
+[[file:docs/images/default-yellow.png]]
+
+  
+* Acknowledgments
+
+A heartfelt thanks to all the contributors to the GNU Emacs ecosystem from which *mdired* builds from. This work would not be possible without your efforts.

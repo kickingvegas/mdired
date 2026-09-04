@@ -2,16 +2,12 @@
 *.elc
 
 # Packaging
-.cask/
-.eask/
-.eldev/
-.keg/
-
-# Built distribution
-dist/
+.cask
 
 # Backup files
 *~
 
 # Undo-tree save-files
 *.~undo-tree
+/docs/mdired.info
+/docs/html/
