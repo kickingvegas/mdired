@@ -5,7 +5,7 @@
 ;; Author: Charles Y. Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/mdired
 ;; Keywords: tools
-;; Package-Version: 0.1.0
+;; Package-Version: 0.1.1-rc.1
 ;; Package-Requires: ((emacs "30.1"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -26,10 +26,9 @@
 ;; mdired is an Elisp package that provides commands for running SIMD-style
 ;; operations on marked Dired items.
 
-;; CAUTION: As many of these commands can cause significant changes to the file
-;; system, users are advised to have a checkpoint (typically made via a source
-;; code management (SCM) tool) to reverse any unwanted changes made from
-;; mdired.
+;; Please be advised: mdired can make irreversible changes to the file system if
+;; no prior checkpoint (typically via a source code management or backup tool)
+;; is available. Exercise caution.
 
 ;; INSTALL
 
@@ -46,9 +45,9 @@
 (defun mdired-do-command (command)
   "Run Elisp COMMAND on marked Dired items.
 
-For all marked Dired items, call `find-file' and then COMMAND on each
-item in sequential fashion. After this command has been run, any buffers
-that are modified will remain open and unsaved.
+For all marked Dired items, call `find-file' and then run COMMAND on
+each item in sequential fashion. After this command has been run, any
+buffers that are modified will remain open and unsaved.
 
 Note: `mdired-do-command' does not check if a marked Dired item is a
 file or directory. The marked Dired item should handle COMMAND
@@ -92,13 +91,16 @@ will be overwritten without prompt."
          (source (dired-get-filename))
          (targets (dired-get-marked-files)))
 
-    (mapc (lambda (target)
-            (let ((target (if (and (file-directory-p target)
-                                   (not (string-equal (substring target -1) "/")))
-                              (concat target "/")
-                            target)))
-              (copy-file source target ok-flag)))
-          targets)))
+    (if (member source targets)
+        (error "Source ‘%s’ cannot be a target" source)
+      (mapc (lambda (target)
+              (let ((target (if (and (file-directory-p target)
+                                     (not (string-equal (substring target -1) "/")))
+                                (concat target "/")
+                              target)))
+                (ignore-errors
+                  (copy-file source target ok-flag))))
+            targets))))
 
 (defun mdired-directory-p (targets)
   "Predicate if all elements in TARGETS are directories."
