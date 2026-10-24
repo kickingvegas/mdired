@@ -22,6 +22,8 @@ Version: {{{version}}}
 
 #+TEXINFO: Copyright © 2026 @w{Charles Y. Choi}
 
+THIS PROJECT IS WIP.
+
 *mdired* is an Elisp package that provides commands for running [[https://en.wikipedia.org/wiki/Single_instruction,_multiple_data][SIMD]]-style operations on marked Dired ([[info:emacs#Dired]]) items.
 
 CAUTION: As many of these commands can cause significant changes to the file system, users are advised to have a checkpoint (typically made via a source code management (SCM) tool) to reverse any unwanted changes made from *mdired*.
@@ -146,7 +148,7 @@ Always choose love.
 * Acknowledgments
 #+CINDEX: Acknowledgments
 
-Thanks goes out to Matt Curtis whose posted answer on [[https://superuser.com/questions/176627/in-emacs-dired-how-can-i-run-a-command-on-multiple-marked-files][superuser.com]] inspired the creation of *mdired*.
+Thanks goes out to Matt Curtis whose posted answer on [[https://superuser.com/questions/176627/in-emacs-dired-how-can-i-run-a-command-on-multiple-marked-files][superuser.com]] informed the making of *mdired*.
 
 * Main Index
 :PROPERTIES:

@@ -37,6 +37,8 @@ Version: 0.0.0
 
 Copyright © 2026 @w{Charles Y. Choi}
 
+THIS PROJECT IS WIP@.
+
 @strong{mdired} is an Elisp package that provides commands for running @uref{https://en.wikipedia.org/wiki/Single_instruction@comma{}_multiple_data, SIMD}-style operations on marked Dired (@ref{Dired,,,emacs,}) items.
 
 CAUTION: As many of these commands can cause significant changes to the file system@comma{} users are advised to have a checkpoint (typically made via a source code management (SCM) tool) to reverse any unwanted changes made from @strong{mdired}.
@@ -193,7 +195,7 @@ Always choose love.
 
 @cindex Acknowledgments
 
-Thanks goes out to Matt Curtis whose posted answer on @uref{https://superuser.com/questions/176627/in-emacs-dired-how-can-i-run-a-command-on-multiple-marked-files, superuser.com} inspired the creation of @strong{mdired}.
+Thanks goes out to Matt Curtis whose posted answer on @uref{https://superuser.com/questions/176627/in-emacs-dired-how-can-i-run-a-command-on-multiple-marked-files, superuser.com} informed the making of @strong{mdired}.
 
 @node Main Index
 @chapter Main Index
