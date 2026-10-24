@@ -1,0 +1,169 @@
+#+startup: overview nologdone
+#+startup: showeverything
+#+TITLE: mdired User Guide
+#+SUBTITLE: for version {{{version}}}
+#+AUTHOR: Charles Y. Choi
+#+EMAIL: kickingvegas@gmail.com
+#+OPTIONS: ':t toc:t author:t email:t H:4 f:t
+#+LANGUAGE: en
+#+MACRO: version 0.0.0
+#+MACRO: kbd (eval (org-texinfo-kbd-macro $1))
+#+TEXINFO_FILENAME: mdired.info
+#+TEXINFO_CLASS: casual
+#+TEXINFO_HEADER: @syncodeindex pg cp
+#+TEXINFO_HEADER: @paragraphindent none
+#+TEXINFO_TITLEPAGE: t
+#+TEXINFO_DIR_CATEGORY: Emacs misc features
+#+TEXINFO_DIR_NAME: mdired
+#+TEXINFO_DIR_DESC: Run SIMD-style operations on marked Dired items.
+#+TEXINFO_PRINTED_TITLE: mdired User Guide
+
+Version: {{{version}}}
+
+#+TEXINFO: Copyright © 2026 @w{Charles Y. Choi}
+
+THIS PROJECT IS WIP.
+
+*mdired* is an Elisp package that provides commands for running [[https://en.wikipedia.org/wiki/Single_instruction,_multiple_data][SIMD]]-style operations on marked Dired ([[info:emacs#Dired]]) items.
+
+CAUTION: As many of these commands can cause significant changes to the file system, users are advised to have a checkpoint (typically made via a source code management (SCM) tool) to reverse any unwanted changes made from *mdired*.
+
+
+#+INCLUDE: "./sponsorship.org"
+
+* Copying
+:PROPERTIES:
+:COPYING: t
+:END:
+
+Copyright © 2026 Charles Y. Choi
+
+* Features
+:PROPERTIES:
+:CUSTOM_ID: features
+:END:
+#+CINDEX: Features
+
+- ~mdired-copy~ :: copy a single file to multiple directories.
+
+- ~mdired-do-command~ :: run an Elisp command on multiple files.
+
+- ~mdired-compile~ :: run ~compile~ on multiple directories.
+
+- ~mdired-byte-compile~ :: byte-compile selected files or directories.
+
+* Requirements
+:PROPERTIES:
+:CUSTOM_ID: requirements
+:END:
+#+CINDEX: Requirements
+
+- GNU Emacs 30.1+
+
+* Install
+:PROPERTIES:
+:CUSTOM_ID: install
+:END:
+#+CINDEX: Install
+
+If manually installed then ensure that ~mdired.el~ is in ~load-path~.
+
+If installed via ~package-install~, then all *mdired* commands are auto-loaded.
+
+
+* Usage
+:PROPERTIES:
+:CUSTOM_ID: usage
+:END:
+#+CINDEX: Usage
+
+*mdired* provides different SIMD-style commands to operate on marked Dired items ([[info:emacs#Marks vs Flags]]).
+
+CAUTION: As many of these commands can cause significant changes to the file system, users are advised to have a checkpoint (typically made via a source code management (SCM) tool) to reverse any unwanted changes made from *mdired*.
+
+- Command: mdired-do-command COMMAND ::
+
+  Run Elisp COMMAND on marked Dired items.
+
+  For all marked Dired items, call ~find-file~ and then COMMAND on each item in sequential fashion. After this command has been run, any buffers that are modified will remain open and unsaved.
+
+  Note: ~mdired-do-command~ does /not/ check if a marked Dired item is a file or directory. The marked Dired item should handle COMMAND gracefully.
+
+- Command: mdired-copy ARG ::
+
+  Copy current Dired item to marked Dired items with overwrite policy ARG.
+
+  For all marked Dired items, copy the current Dired item to it. If the marked item is a directory, the current item is copied into it. If the marked item is a file, the current Dired item will write over it per the policy determined via the command prefix ARG.
+
+  If no command prefix ({{{kbd(C-u)}}}) is set, then the user will be prompted to select an overwrite policy as described in ~copy-file~. The options provided are:
+
+  - never : do not overwrite marked file
+  - overwrite : overwrite marked file
+  - ask : prompt user if marked file should be overwritten.
+
+  If the command prefix ({{{kbd(C-u)}}}) is set, then marked files will be overwritten without prompt.
+
+- Command: mdired-compile ::
+
+  Run ~compile~ on marked Dired directories.
+
+  For all marked directories, run ~compile~ on each directory, with output placed in a uniquely named buffer of the form
+
+  "*compilation - %s*"
+
+  where "%s" is the name of the marked directory.
+
+  ~mdired-compile~ pre-checks that all marked items are directories and will not execute if not true.
+
+  Refer to [[info:emacs#Compilation]] for detail on ~compile~.
+
+- Command: mdired-byte-compile ::
+
+  Byte-compile marked Elisp files or directories.
+
+  For all marked items, run either ~byte-recompile-directory~ if the item is a directory, or ~byte-recompile-file~ if the item is an Elisp file.
+
+* Feedback & Discussion
+#+CINDEX: Feedback
+Please report any feedback about *mdired* to the [[https://github.com/kickingvegas/casual-suite/issues][issue tracker on GitHub]].
+
+#+CINDEX: Discussion
+To participate in general discussion about using *mdired*, please join the [[https://github.com/kickingvegas/casual-suite/discussions][discussion group]].
+
+* Sponsorship
+#+CINDEX: Sponsorship
+
+#+INCLUDE: "./sponsorship.org"
+
+
+* About
+#+CINDEX: About
+
+[[https://github.com/kickingvegas/mdired][mdired]] was conceived and crafted by Charles Y. Choi in San Francisco, California.
+
+Thank you for using *mdired*.
+
+Always choose love.
+
+* Acknowledgments
+#+CINDEX: Acknowledgments
+
+Thanks goes out to Matt Curtis whose posted answer on [[https://superuser.com/questions/176627/in-emacs-dired-how-can-i-run-a-command-on-multiple-marked-files][superuser.com]] informed the making of *mdired*.
+
+* Main Index
+:PROPERTIES:
+:INDEX:    cp
+:END:
+
+Index for this user guide.
+
+* Variable Index
+:PROPERTIES:
+:INDEX:    vr
+:END:
+
+Variables, functions, commands, and menus referenced by this user guide.
+
+# Local Variables:
+# burnish-backend: kvtexinfo
+# End:

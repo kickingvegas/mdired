@@ -1,0 +1,214 @@
+\input texinfo    @c -*- texinfo -*-
+@c %**start of header
+@setfilename mdired.info
+@settitle mdired User Guide
+@documentencoding UTF-8
+@documentlanguage en
+@syncodeindex pg cp
+@paragraphindent none
+@c %**end of header
+
+@copying
+Copyright © 2026 Charles Y@. Choi
+@end copying
+
+@dircategory Emacs misc features
+@direntry
+* mdired: (mdired).     Run SIMD-style operations on marked Dired items.
+@end direntry
+
+@finalout
+@titlepage
+@title mdired User Guide
+@subtitle for version 0.0.0
+@author Charles Y@. Choi (@email{kickingvegas@@gmail.com})
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@contents
+
+@ifnottex
+@node Top
+@top mdired User Guide
+
+Version: 0.0.0
+
+Copyright © 2026 @w{Charles Y. Choi}
+
+THIS PROJECT IS WIP@.
+
+@strong{mdired} is an Elisp package that provides commands for running @uref{https://en.wikipedia.org/wiki/Single_instruction@comma{}_multiple_data, SIMD}-style operations on marked Dired (@ref{Dired,,,emacs,}) items.
+
+CAUTION: As many of these commands can cause significant changes to the file system@comma{} users are advised to have a checkpoint (typically made via a source code management (SCM) tool) to reverse any unwanted changes made from @strong{mdired}.
+
+
+If you enjoy using mdired@comma{} please consider buying me a coffee to help support its development and maintenance.
+
+@image{images/default-yellow,,,,png}
+
+@uref{https://www.buymeacoffee.com/kickingvegas}
+
+@end ifnottex
+
+@menu
+* Features::
+* Requirements::
+* Install::
+* Usage::
+* Feedback & Discussion::
+* Sponsorship::
+* About::
+* Acknowledgments::
+* Main Index::
+* Variable Index::
+@end menu
+
+@node Features
+@chapter Features
+
+@cindex Features
+
+@table @asis
+@item @code{mdired-copy}
+copy a single file to multiple directories.
+
+@item @code{mdired-do-command}
+run an Elisp command on multiple files.
+
+@item @code{mdired-compile}
+run @code{compile} on multiple directories.
+
+@item @code{mdired-byte-compile}
+byte-compile selected files or directories.
+@end table
+
+@node Requirements
+@chapter Requirements
+
+@cindex Requirements
+
+@itemize
+@item
+GNU Emacs 30.1+
+@end itemize
+
+@node Install
+@chapter Install
+
+@cindex Install
+
+If manually installed then ensure that @code{mdired.el} is in @code{load-path}.
+
+If installed via @code{package-install}@comma{} then all @strong{mdired} commands are auto-loaded.
+
+@node Usage
+@chapter Usage
+
+@cindex Usage
+
+@strong{mdired} provides different SIMD-style commands to operate on marked Dired items (@ref{Marks vs Flags,,,emacs,}).
+
+CAUTION: As many of these commands can cause significant changes to the file system@comma{} users are advised to have a checkpoint (typically made via a source code management (SCM) tool) to reverse any unwanted changes made from @strong{mdired}.
+
+@deffn Command mdired-do-command COMMAND
+Run Elisp COMMAND on marked Dired items.
+
+For all marked Dired items@comma{} call @code{find-file} and then COMMAND on each item in sequential fashion. After this command has been run@comma{} any buffers that are modified will remain open and unsaved.
+
+Note: @code{mdired-do-command} does @emph{not} check if a marked Dired item is a file or directory. The marked Dired item should handle COMMAND gracefully.
+@end deffn
+
+@deffn Command mdired-copy ARG
+Copy current Dired item to marked Dired items with overwrite policy ARG@.
+
+For all marked Dired items@comma{} copy the current Dired item to it. If the marked item is a directory@comma{} the current item is copied into it. If the marked item is a file@comma{} the current Dired item will write over it per the policy determined via the command prefix ARG@.
+
+If no command prefix (@kbd{C-u}) is set@comma{} then the user will be prompted to select an overwrite policy as described in @code{copy-file}. The options provided are:
+
+@itemize
+@item
+never : do not overwrite marked file
+@item
+overwrite : overwrite marked file
+@item
+ask : prompt user if marked file should be overwritten.
+@end itemize
+
+If the command prefix (@kbd{C-u}) is set@comma{} then marked files will be overwritten without prompt.
+@end deffn
+
+@deffn Command mdired-compile
+Run @code{compile} on marked Dired directories.
+
+For all marked directories@comma{} run @code{compile} on each directory@comma{} with output placed in a uniquely named buffer of the form
+
+``@strong{compilation - %s}''
+
+where ``%s'' is the name of the marked directory.
+
+@code{mdired-compile} pre-checks that all marked items are directories and will not execute if not true.
+
+Refer to @ref{Compilation,,,emacs,} for detail on @code{compile}.
+@end deffn
+
+@deffn Command mdired-byte-compile
+Byte-compile marked Elisp files or directories.
+
+For all marked items@comma{} run either @code{byte-recompile-directory} if the item is a directory@comma{} or @code{byte-recompile-file} if the item is an Elisp file.
+@end deffn
+
+@node Feedback & Discussion
+@chapter Feedback & Discussion
+
+@cindex Feedback
+Please report any feedback about @strong{mdired} to the @uref{https://github.com/kickingvegas/casual-suite/issues, issue tracker on GitHub}.
+
+@cindex Discussion
+To participate in general discussion about using @strong{mdired}@comma{} please join the @uref{https://github.com/kickingvegas/casual-suite/discussions, discussion group}.
+
+@node Sponsorship
+@chapter Sponsorship
+
+@cindex Sponsorship
+
+If you enjoy using mdired@comma{} please consider buying me a coffee to help support its development and maintenance.
+
+@image{images/default-yellow,,,,png}
+
+@uref{https://www.buymeacoffee.com/kickingvegas}
+
+@node About
+@chapter About
+
+@cindex About
+
+@uref{https://github.com/kickingvegas/mdired, mdired} was conceived and crafted by Charles Y@. Choi in San Francisco@comma{} California.
+
+Thank you for using @strong{mdired}.
+
+Always choose love.
+
+@node Acknowledgments
+@chapter Acknowledgments
+
+@cindex Acknowledgments
+
+Thanks goes out to Matt Curtis whose posted answer on @uref{https://superuser.com/questions/176627/in-emacs-dired-how-can-i-run-a-command-on-multiple-marked-files, superuser.com} informed the making of @strong{mdired}.
+
+@node Main Index
+@chapter Main Index
+
+Index for this user guide.
+
+@printindex cp
+
+@node Variable Index
+@chapter Variable Index
+
+Variables@comma{} functions@comma{} commands@comma{} and menus referenced by this user guide.
+
+@printindex vr
+
+@bye

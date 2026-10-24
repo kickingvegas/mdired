@@ -1,0 +1,51 @@
+# [[https://melpa.org/#/mdired][file:https://melpa.org/packages/mdired-badge.svg]] [[https://stable.melpa.org/#/mdired][file:https://stable.melpa.org/packages/mdired-badge.svg]]
+
+* mdired
+
+THIS PROJECT IS WIP.
+
+*mdired* is an Elisp package that provides commands for running [[https://en.wikipedia.org/wiki/Single_instruction,_multiple_data][SIMD]]-style operations on marked Dired items.
+
+CAUTION: As many of these commands can cause significant changes to the file system, users are advised to have a checkpoint (typically made via a source code management (SCM) tool) to reverse any unwanted changes made from *mdired*.
+
+* Features
+
+- ~mdired-copy~ :: copy a single file to multiple directories.
+
+- ~mdired-do-command~ :: run an Elisp command on multiple files.
+
+- ~mdired-compile~ :: run ~compile~ on multiple directories.
+
+- ~mdired-byte-compile~ :: byte-compile selected files or directories.
+
+
+* Requirements
+
+- GNU Emacs 30.1+
+
+
+* Usage
+
+Refer to the [[https://github.com/kickingvegas/mdired][mdired User Guide]] for guidance on usage.
+
+* Install
+
+If manually installed then ensure that ~mdired.el~ is in ~load-path~.
+
+If installed via ~package-install~, then all *mdired* commands are auto-loaded.
+
+  
+* Sponsorship
+
+If you enjoy using *mdired*, please consider buying me a coffee to help support its development and maintenance.
+
+[[https://www.buymeacoffee.com/kickingvegas][file:docs/images/default-yellow.png]]
+
+  
+* Acknowledgments
+
+Thanks goes out to Matt Curtis whose posted answer on [[https://superuser.com/questions/176627/in-emacs-dired-how-can-i-run-a-command-on-multiple-marked-files][superuser.com]] informed the making of *mdired*.
+
+
+
+
