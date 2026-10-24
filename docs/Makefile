@@ -54,7 +54,7 @@ images/ $@
 html/main.css: html main.css
 	cp main.css html
 
-html/index.html: ${PKG_NAME}.texi html/main.css html/images
+html/index.html: ${PKG_NAME}.texi html/main.css html
 	makeinfo				\
 --html						\
 --css-ref=main.css				\

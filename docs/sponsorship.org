@@ -1,5 +1,3 @@
-If you enjoy using mdired, please consider buying me a coffee to help support its development and maintenance.
-
-[[file:images/default-yellow.png]]
+If you enjoy using *mdired*, please consider buying me a coffee to help support its development and maintenance.
 
 [[https://www.buymeacoffee.com/kickingvegas]]
