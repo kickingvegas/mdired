@@ -26,7 +26,7 @@ CAUTION: As many of these commands can cause significant changes to the file sys
 
 * Usage
 
-Refer to the [[https://github.com/kickingvegas/mdired][mdired User Guide]] for guidance on usage.
+Refer to the [[https://kickingvegas.github.io/mdired/][mdired User Guide]] for guidance on usage.
 
 * Install
 
@@ -39,9 +39,9 @@ If installed via ~package-install~, then all *mdired* commands are auto-loaded.
 
 If you enjoy using *mdired*, please consider buying me a coffee to help support its development and maintenance.
 
-[[https://www.buymeacoffee.com/kickingvegas][file:docs/images/default-yellow.png]]
+[[https://www.buymeacoffee.com/kickingvegas][http://yummymelon.com/devnull/theme/images/icons/buymecoffee.png]]
 
-  
+
 * Acknowledgments
 
 Thanks goes out to Matt Curtis whose posted answer on [[https://superuser.com/questions/176627/in-emacs-dired-how-can-i-run-a-command-on-multiple-marked-files][superuser.com]] informed the making of *mdired*.
