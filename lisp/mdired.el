@@ -1,4 +1,4 @@
-;;; mdired.el -- Commands for marked Dired items. -*- lexical-binding: t; -*-
+;;; mdired.el --- SIMD-style commands for marked Dired items -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2026 Charles Y. Choi
 
@@ -35,7 +35,6 @@
 ;; If manually installed then ensure that mdired.el is in `load-path'.
 
 ;; If installed via `package-install', then all mdired commands are auto-loaded.
-
 
 ;;; Code:
 (require 'dired)
