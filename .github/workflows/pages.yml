@@ -48,7 +48,7 @@ jobs:
 
       - name: Generate mdired User Guide
         run: |
-          echo Generating Casual Suite User Guide
+          echo Generating mdired User Guide
           make -C docs gen-html
 
       - name: Upload artifact

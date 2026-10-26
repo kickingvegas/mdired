@@ -2,8 +2,6 @@
 
 * mdired
 
-THIS PROJECT IS WIP.
-
 *mdired* is an Elisp package that provides commands for running [[https://en.wikipedia.org/wiki/Single_instruction,_multiple_data][SIMD]]-style operations on marked Dired items.
 
 Please be advised: *mdired* can make irreversible changes to the file system if no prior checkpoint (typically via a source code management or backup tool) is available. Exercise caution.
@@ -16,7 +14,7 @@ Please be advised: *mdired* can make irreversible changes to the file system if 
 
 - ~mdired-compile~ :: run ~compile~ on multiple directories.
 
-- ~mdired-byte-compile~ :: byte-compile selected files or directories.
+- ~mdired-byte-recompile~ :: byte-compile selected files or directories.
 
 
 * Requirements
@@ -34,7 +32,7 @@ If manually installed then ensure that ~mdired.el~ is in ~load-path~.
 
 If installed via ~package-install~, then all *mdired* commands are auto-loaded.
 
-  
+
 * Sponsorship
 
 If you enjoy using *mdired*, please consider buying me a coffee to help support its development and maintenance.
@@ -42,10 +40,12 @@ If you enjoy using *mdired*, please consider buying me a coffee to help support 
 [[https://www.buymeacoffee.com/kickingvegas][http://yummymelon.com/devnull/theme/images/icons/buymecoffee.png]]
 
 
+Please star and share this project to others as well. Thank you!
+
 * Acknowledgments
 
 Thanks goes out to Matt Curtis whose posted answer on [[https://superuser.com/questions/176627/in-emacs-dired-how-can-i-run-a-command-on-multiple-marked-files][superuser.com]] informed the making of *mdired*.
 
-
-
-
+# Local Variables:
+# burnish-backend: html
+# End:

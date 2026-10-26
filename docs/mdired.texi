@@ -37,8 +37,6 @@ Version: 0.1.2-rc.1
 
 Copyright © 2026 @w{Charles Y. Choi}
 
-THIS PROJECT IS WIP@.
-
 @strong{mdired} is an Elisp package that provides commands for running @uref{https://en.wikipedia.org/wiki/Single_instruction@comma{}_multiple_data, SIMD}-style operations on marked Dired (@ref{Dired,,,emacs,}) items.
 
 Please be advised: @strong{mdired} can make irreversible changes to the file system if no prior checkpoint (typically via a source code management or backup tool) is available. Exercise caution.
@@ -78,7 +76,7 @@ run an Elisp command on multiple files.
 @item @code{mdired-compile}
 run @code{compile} on multiple directories.
 
-@item @code{mdired-byte-compile}
+@item @code{mdired-byte-recompile}
 byte-compile selected files or directories.
 @end table
 
@@ -116,7 +114,11 @@ Run Elisp COMMAND on marked Dired items.
 
 For all marked Dired items@comma{} call @code{find-file} and then run COMMAND on each item in sequential fashion. After this command has been run@comma{} any buffers that are modified will remain open and unsaved.
 
+COMMAND may be an interactive command or a named keyboard macro.
+
 Note: @code{mdired-do-command} does @emph{not} check if a marked Dired item is a file or directory. The marked Dired item should handle COMMAND gracefully.
+
+If a COMMAND on a marked item results in an error@comma{} the error is ignored; COMMAND will still be run on all remaining marked items.
 @end deffn
 
 @deffn Command mdired-copy ARG
@@ -152,8 +154,8 @@ where ``%s'' is the name of the marked directory.
 Refer to @ref{Compilation,,,emacs,} for detail on @code{compile}.
 @end deffn
 
-@deffn Command mdired-byte-compile
-Byte-compile marked Elisp files or directories.
+@deffn Command mdired-byte-recompile
+Byte recompile marked Elisp files or directories.
 
 For all marked items@comma{} run either @code{byte-recompile-directory} if the item is a directory@comma{} or @code{byte-recompile-file} if the item is an Elisp file.
 @end deffn
@@ -162,10 +164,10 @@ For all marked items@comma{} run either @code{byte-recompile-directory} if the i
 @chapter Feedback & Discussion
 
 @cindex Feedback
-Please report any feedback about @strong{mdired} to the @uref{https://github.com/kickingvegas/casual-suite/issues, issue tracker on GitHub}.
+Please report any feedback about @strong{mdired} to the @uref{https://github.com/kickingvegas/mdired/issues, issue tracker on GitHub}.
 
 @cindex Discussion
-To participate in general discussion about using @strong{mdired}@comma{} please join the @uref{https://github.com/kickingvegas/casual-suite/discussions, discussion group}.
+To participate in general discussion about using @strong{mdired}@comma{} please join the @uref{https://github.com/kickingvegas/mdired/discussions, discussion group}.
 
 @node Sponsorship
 @chapter Sponsorship

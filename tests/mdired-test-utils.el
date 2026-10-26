@@ -33,5 +33,36 @@
   "Test breakdown function, if CLEAR is non-nil then clear state."
   )
 
+
+(defun mdired-testbench (dirlist block)
+  "Setup mdired testbench with DIRLIST and BLOCK.
+
+- DIRLIST: list of strings
+- BLOCK: function to execute
+
+In a new temporary directory:
+
+1. Open new temporary directory in Dired buffer.
+2. Create directories specified by DIRLIST.
+3. Mark new directories in Dired buffer.
+4. Run BLOCK."
+
+  (let* ((temp-dir (make-temp-file "mdired-" t))
+         (scratch-dirs (mapcar (lambda (x)
+                                 (expand-file-name x temp-dir))
+                               dirlist)))
+    (unwind-protect
+        (progn
+          (dired temp-dir)
+          (mapc (lambda (sdir)
+                  (make-directory sdir)
+                  (revert-buffer)
+                  (dired-goto-file sdir)
+                  (dired-mark nil))
+                scratch-dirs)
+
+          (funcall block temp-dir scratch-dirs))
+      (delete-directory temp-dir t))))
+
 (provide 'mdired-test-utils)
 ;;; mdired-test-utils.el ends here
