@@ -5,7 +5,7 @@
 ;; Author: Charles Y. Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/mdired
 ;; Keywords: tools
-;; Package-Version: 0.1.1
+;; Package-Version: 0.1.2-rc.1
 ;; Package-Requires: ((emacs "30.1"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -49,14 +49,20 @@ For all marked Dired items, call `find-file' and then run COMMAND on
 each item in sequential fashion. After this command has been run, any
 buffers that are modified will remain open and unsaved.
 
+COMMAND may be an interactive command or a named keyboard macro.
+
 Note: `mdired-do-command' does not check if a marked Dired item is a
 file or directory. The marked Dired item should handle COMMAND
-gracefully."
+gracefully.
+
+If a COMMAND on a marked item results in an error, the error is ignored;
+COMMAND will still be run on all remaining marked items."
   (interactive "CRun on marked files M-x " dired-mode)
   (save-window-excursion
     (mapc (lambda (filename)
             (find-file filename)
-            (call-interactively command))
+            (ignore-errors
+              (call-interactively command)))
           (dired-get-marked-files))))
 
 ;;;###autoload (autoload 'mdired-copy "mdired" nil '(dired-mode))
@@ -141,9 +147,9 @@ Refer to Info node `(emacs)Compilation' for detail on `compile'."
               targets)
       (error "ERROR: All marked files must be directories"))))
 
-;;;###autoload (autoload 'mdired-compile "mdired" nil '(dired-mode))
-(defun mdired-byte-compile ()
-  "Byte-compile marked Elisp files or directories.
+;;;###autoload (autoload 'mdired-byte-recompile "mdired" nil '(dired-mode))
+(defun mdired-byte-recompile ()
+  "Byte recompile marked Elisp files or directories.
 
 For all marked items, run either `byte-recompile-directory' if the item
 is a directory, or `byte-recompile-file' if the item is an Elisp file."

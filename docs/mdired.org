@@ -6,7 +6,7 @@
 #+EMAIL: kickingvegas@gmail.com
 #+OPTIONS: ':t toc:t author:t email:t H:4 f:t
 #+LANGUAGE: en
-#+MACRO: version 0.1.1
+#+MACRO: version 0.1.2-rc.1
 #+MACRO: kbd (eval (org-texinfo-kbd-macro $1))
 #+TEXINFO_FILENAME: mdired.info
 #+TEXINFO_CLASS: casual
@@ -21,8 +21,6 @@
 Version: {{{version}}}
 
 #+TEXINFO: Copyright © 2026 @w{Charles Y. Choi}
-
-THIS PROJECT IS WIP.
 
 *mdired* is an Elisp package that provides commands for running [[https://en.wikipedia.org/wiki/Single_instruction,_multiple_data][SIMD]]-style operations on marked Dired ([[info:emacs#Dired]]) items.
 
@@ -50,7 +48,7 @@ Copyright © 2026 Charles Y. Choi
 
 - ~mdired-compile~ :: run ~compile~ on multiple directories.
 
-- ~mdired-byte-compile~ :: byte-compile selected files or directories.
+- ~mdired-byte-recompile~ :: byte-compile selected files or directories.
 
 * Requirements
 :PROPERTIES:
@@ -88,7 +86,11 @@ Please be advised: *mdired* can make irreversible changes to the file system if 
 
   For all marked Dired items, call ~find-file~ and then run COMMAND on each item in sequential fashion. After this command has been run, any buffers that are modified will remain open and unsaved.
 
+  COMMAND may be an interactive command or a named keyboard macro.
+  
   Note: ~mdired-do-command~ does /not/ check if a marked Dired item is a file or directory. The marked Dired item should handle COMMAND gracefully.
+
+  If a COMMAND on a marked item results in an error, the error is ignored; COMMAND will still be run on all remaining marked items.
 
 - Command: mdired-copy ARG ::
 
@@ -118,18 +120,18 @@ Please be advised: *mdired* can make irreversible changes to the file system if 
 
   Refer to [[info:emacs#Compilation]] for detail on ~compile~.
 
-- Command: mdired-byte-compile ::
+- Command: mdired-byte-recompile ::
 
-  Byte-compile marked Elisp files or directories.
+  Byte recompile marked Elisp files or directories.
 
   For all marked items, run either ~byte-recompile-directory~ if the item is a directory, or ~byte-recompile-file~ if the item is an Elisp file.
 
 * Feedback & Discussion
 #+CINDEX: Feedback
-Please report any feedback about *mdired* to the [[https://github.com/kickingvegas/casual-suite/issues][issue tracker on GitHub]].
+Please report any feedback about *mdired* to the [[https://github.com/kickingvegas/mdired/issues][issue tracker on GitHub]].
 
 #+CINDEX: Discussion
-To participate in general discussion about using *mdired*, please join the [[https://github.com/kickingvegas/casual-suite/discussions][discussion group]].
+To participate in general discussion about using *mdired*, please join the [[https://github.com/kickingvegas/mdired/discussions][discussion group]].
 
 * Sponsorship
 #+CINDEX: Sponsorship
