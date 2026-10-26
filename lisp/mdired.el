@@ -1,11 +1,11 @@
-;;; mdired.el -- Commands for marked Dired items. -*- lexical-binding: t; -*-
+;;; mdired.el --- SIMD-style commands for marked Dired items -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2026 Charles Y. Choi
 
 ;; Author: Charles Y. Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/mdired
 ;; Keywords: tools
-;; Package-Version: 0.2.0
+;; Package-Version: 0.2.1-rc.1
 ;; Package-Requires: ((emacs "30.1"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -35,7 +35,6 @@
 ;; If manually installed then ensure that mdired.el is in `load-path'.
 
 ;; If installed via `package-install', then all mdired commands are auto-loaded.
-
 
 ;;; Code:
 (require 'dired)
