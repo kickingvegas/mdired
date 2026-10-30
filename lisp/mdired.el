@@ -5,7 +5,7 @@
 ;; Author: Charles Y. Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/mdired
 ;; Keywords: tools
-;; Package-Version: 0.3.1-rc.1
+;; Package-Version: 1.0.0
 ;; Package-Requires: ((emacs "30.1"))
 
 ;; This program is free software; you can redistribute it and/or modify
