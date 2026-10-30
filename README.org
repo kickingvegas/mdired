@@ -10,7 +10,7 @@ Please be advised: *mdired* can make irreversible changes to the file system if 
 
 - ~mdired-copy~ :: copy a single file to multiple directories.
 
-- ~mdired-do-command~ :: run an Elisp command on multiple files.
+- ~mdired-do-command~ :: run an Elisp command or keyboard macro on multiple files.
 
 - ~mdired-compile~ :: run ~compile~ on multiple directories.
 
