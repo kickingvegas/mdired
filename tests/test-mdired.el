@@ -29,6 +29,11 @@
 (require 'mdired-test-utils)
 (require 'mdired)
 
+(ert-deftest test-mdired-ignore-errors ()
+  "Test `mdired-ignore-errors' variable."
+  (should (and (boundp mdired-ignore-errors)
+               (not mdired-ignore-errors))))
+
 (ert-deftest test-mdired-do-command ()
   "Test for `mdired-do-command'."
 

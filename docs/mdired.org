@@ -90,7 +90,7 @@ Please be advised: *mdired* can make irreversible changes to the file system if 
   
   Note: ~mdired-do-command~ does /not/ check if a marked Dired item is a file or directory. The marked Dired item should handle COMMAND gracefully.
 
-  If a COMMAND on a marked item results in an error, the error is ignored; COMMAND will still be run on all remaining marked items.
+  How errors are handled by this command is controlled by the variable ~mdired-ignore-errors~.
 
 - Command: mdired-copy ARG ::
 
@@ -105,6 +105,8 @@ Please be advised: *mdired* can make irreversible changes to the file system if 
   - ask : prompt user if marked file should be overwritten.
 
   If the command prefix ({{{kbd(C-u)}}}) is set, then marked files will be overwritten without prompt.
+
+  How errors are handled by this command is controlled by the variable ~mdired-ignore-errors~.
 
 - Command: mdired-compile ::
 
@@ -125,6 +127,17 @@ Please be advised: *mdired* can make irreversible changes to the file system if 
   Byte recompile marked Elisp files or directories.
 
   For all marked items, run either ~byte-recompile-directory~ if the item is a directory, or ~byte-recompile-file~ if the item is an Elisp file.
+
+
+** Customization
+#+CINDEX: Customization
+
+- Variable: mdired-ignore-errors ::
+
+  If non-nil, ignore errors raised when iterating through marked Dired items.
+
+  By default, *mdired* commands will stop forward iteration though remaining marked Dired items if an error is raised. This behavior can be overridden by setting this variable to a non-nil value. If non-nil, iteration occurs through all marked Dired items, regardless if an error occurs for any item.
+
 
 * Feedback & Discussion
 #+CINDEX: Feedback
@@ -160,12 +173,19 @@ Thanks goes out to Matt Curtis whose posted answer on [[https://superuser.com/qu
 
 Index for this user guide.
 
+* Command Index
+:PROPERTIES:
+:INDEX:    fn
+:END:
+
+Commands referenced by this user guide.
+
 * Variable Index
 :PROPERTIES:
 :INDEX:    vr
 :END:
 
-Variables, functions, commands, and menus referenced by this user guide.
+Variables referenced by this user guide.
 
 # Local Variables:
 # burnish-backend: kvtexinfo

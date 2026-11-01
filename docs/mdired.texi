@@ -58,7 +58,17 @@ If you enjoy using @strong{mdired}@comma{} please consider buying me a coffee to
 * About::
 * Acknowledgments::
 * Main Index::
+* Command Index::
 * Variable Index::
+
+@detailmenu
+--- The Detailed Node Listing ---
+
+Usage
+
+* Customization::
+
+@end detailmenu
 @end menu
 
 @node Features
@@ -118,7 +128,7 @@ COMMAND may be an interactive command or a named keyboard macro.
 
 Note: @code{mdired-do-command} does @emph{not} check if a marked Dired item is a file or directory. The marked Dired item should handle COMMAND gracefully.
 
-If a COMMAND on a marked item results in an error@comma{} the error is ignored; COMMAND will still be run on all remaining marked items.
+How errors are handled by this command is controlled by the variable @code{mdired-ignore-errors}.
 @end deffn
 
 @deffn Command mdired-copy ARG
@@ -138,6 +148,8 @@ ask : prompt user if marked file should be overwritten.
 @end itemize
 
 If the command prefix (@kbd{C-u}) is set@comma{} then marked files will be overwritten without prompt.
+
+How errors are handled by this command is controlled by the variable @code{mdired-ignore-errors}.
 @end deffn
 
 @deffn Command mdired-compile
@@ -159,6 +171,21 @@ Byte recompile marked Elisp files or directories.
 
 For all marked items@comma{} run either @code{byte-recompile-directory} if the item is a directory@comma{} or @code{byte-recompile-file} if the item is an Elisp file.
 @end deffn
+
+@menu
+* Customization::
+@end menu
+
+@node Customization
+@section Customization
+
+@cindex Customization
+
+@defvar mdired-ignore-errors
+If non-nil@comma{} ignore errors raised when iterating through marked Dired items.
+
+By default@comma{} @strong{mdired} commands will stop forward iteration though remaining marked Dired items if an error is raised. This behavior can be overridden by setting this variable to a non-nil value. If non-nil@comma{} iteration occurs through all marked Dired items@comma{} regardless if an error occurs for any item.
+@end defvar
 
 @node Feedback & Discussion
 @chapter Feedback & Discussion
@@ -203,10 +230,17 @@ Index for this user guide.
 
 @printindex cp
 
+@node Command Index
+@chapter Command Index
+
+Commands referenced by this user guide.
+
+@printindex fn
+
 @node Variable Index
 @chapter Variable Index
 
-Variables@comma{} functions@comma{} commands@comma{} and menus referenced by this user guide.
+Variables referenced by this user guide.
 
 @printindex vr
 
