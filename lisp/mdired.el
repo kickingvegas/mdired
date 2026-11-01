@@ -5,7 +5,7 @@
 ;; Author: Charles Y. Choi <kickingvegas@gmail.com>
 ;; URL: https://github.com/kickingvegas/mdired
 ;; Keywords: tools
-;; Package-Version: 1.0.0
+;; Package-Version: 1.0.1-rc.1
 ;; Package-Requires: ((emacs "30.1"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -40,6 +40,21 @@
 (require 'dired)
 (require 'compile)
 
+(defgroup mdired nil
+  "Group settings for mdired, SIMD-style commands for marked Dired items."
+  :group 'convenience)
+
+(defcustom mdired-ignore-errors nil
+  "If non-nil, ignore errors raised when iterating through marked Dired items.
+
+By default, mdired commands will stop forward iteration though remaining
+marked Dired items if an error is raised. This behavior can be
+overridden by setting this variable to a non-nil value. If non-nil,
+iteration occurs through all marked Dired items, regardless if an error
+occurs for any item."
+  :type 'boolean
+  :group 'mdired)
+
 ;;;###autoload (autoload 'mdired-do-command "mdired" nil '(dired-mode))
 (defun mdired-do-command (command)
   "Run Elisp COMMAND on marked Dired items.
@@ -54,13 +69,15 @@ Note: `mdired-do-command' does not check if a marked Dired item is a
 file or directory. The marked Dired item should handle COMMAND
 gracefully.
 
-If a COMMAND on a marked item results in an error, the error is ignored;
-COMMAND will still be run on all remaining marked items."
+How errors are handled by this command is controlled by the variable
+`mdired-ignore-errors'."
   (interactive "CRun on marked files M-x " dired-mode)
   (save-window-excursion
     (mapc (lambda (filename)
             (find-file filename)
-            (ignore-errors
+            (if mdired-ignore-errors
+                (ignore-errors
+                  (call-interactively command))
               (call-interactively command)))
           (dired-get-marked-files))))
 
@@ -82,7 +99,10 @@ The options provided are:
   - ask : prompt user if marked file should be overwritten.
 
 If the command prefix \\[universal-argument] is set, then marked files
-will be overwritten without prompt."
+will be overwritten without prompt.
+
+How errors are handled by this command is controlled by the variable
+`mdired-ignore-errors'."
   (interactive "P" dired-mode)
   (let* ((arg (if (not arg)
                   (completing-read "Overwrite Policy: "
@@ -103,7 +123,9 @@ will be overwritten without prompt."
                                      (not (string-equal (substring target -1) "/")))
                                 (concat target "/")
                               target)))
-                (ignore-errors
+                (if mdired-ignore-errors
+                    (ignore-errors
+                      (copy-file source target ok-flag))
                   (copy-file source target ok-flag))))
             targets))))
 
