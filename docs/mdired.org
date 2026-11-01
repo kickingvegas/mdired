@@ -64,10 +64,9 @@ Copyright © 2026 Charles Y. Choi
 :END:
 #+CINDEX: Install
 
-If manually installed then ensure that ~mdired.el~ is in ~load-path~.
-
 If installed via ~package-install~, then all *mdired* commands are auto-loaded.
 
+If manually installed then ensure that ~mdired.el~ is in ~load-path~.
 
 * Usage
 :PROPERTIES:

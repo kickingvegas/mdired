@@ -1,4 +1,4 @@
-# [[https://melpa.org/#/mdired][file:https://melpa.org/packages/mdired-badge.svg]] [[https://stable.melpa.org/#/mdired][file:https://stable.melpa.org/packages/mdired-badge.svg]]
+[[https://melpa.org/#/mdired][file:https://melpa.org/packages/mdired-badge.svg]] [[https://stable.melpa.org/#/mdired][file:https://stable.melpa.org/packages/mdired-badge.svg]]
 
 * mdired
 
@@ -28,10 +28,9 @@ Refer to the [[https://kickingvegas.github.io/mdired/][mdired User Guide]] for g
 
 * Install
 
-If manually installed then ensure that ~mdired.el~ is in ~load-path~.
-
 If installed via ~package-install~, then all *mdired* commands are auto-loaded.
 
+If manually installed then ensure that ~mdired.el~ is in ~load-path~.
 
 * Sponsorship
 
